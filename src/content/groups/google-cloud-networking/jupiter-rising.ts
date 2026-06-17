@@ -54,8 +54,8 @@ export const jupiterRising: Subject = {
         text: 'Centralized routing: switches report link state to a replicated master that computes and pushes forwarding tables',
       },
       incorrect: [
-        { id: 'b', text: 'An optical circuit switch that physically steers light beams between aggregation blocks across the whole fabric core' },
-        { id: 'c', text: 'The Top-of-Rack switch hardware platform used for attaching individual servers to the datacenter fabric access edge' },
+        { id: 'b', text: 'An optical circuit switch that steers light beams between aggregation blocks across the fabric core' },
+        { id: 'c', text: 'The Top-of-Rack switch platform that attaches individual servers to the fabric access edge' },
         { id: 'd', text: 'A distributed congestion-control algorithm running on each switch CPU per flow' },
         { id: 'e', text: 'The WAN traffic-engineering controller also deployed in the B4 backbone network' },
       ],
@@ -214,8 +214,8 @@ export const jupiterRising: Subject = {
         text: 'Make tens of thousands of servers behave as one giant high-bandwidth switch with uniform any-to-any capacity',
       },
       incorrect: [
-        { id: 'b', text: 'Allow every individual rack to run a completely different routing protocol of its own for maximum flexibility' },
-        { id: 'c', text: 'Give each application or tenant its own physically isolated and separately cabled dedicated network infrastructure' },
+        { id: 'b', text: 'Allow every individual rack to run a completely different routing protocol for flexibility' },
+        { id: 'c', text: 'Give each application or tenant its own physically isolated, separately cabled network' },
         { id: 'd', text: 'Completely eliminate the need for any Top-of-Rack switches anywhere in the architecture' },
         { id: 'e', text: 'Replace Ethernet entirely with InfiniBand fabrics for lower latency inside the building' },
       ],

@@ -89,6 +89,28 @@ describe('answer-length carries no signal', () => {
     expect(rate).toBeLessThanOrEqual(HI);
   });
 
+  it('no single subject is length-skewed (each subject near chance, since quizzes are often per-subject)', () => {
+    const bySubject = new Map<string, typeof questions>();
+    for (const q of questions) {
+      const arr = bySubject.get(q.subject) ?? [];
+      arr.push(q);
+      bySubject.set(q.subject, arr);
+    }
+    const PER_LO = 0.1;
+    const PER_HI = 0.42;
+    const offenders: string[] = [];
+    for (const [subject, qs] of bySubject) {
+      const lon = mean(qs.map(pickLongestWin));
+      const sho = mean(qs.map(pickShortestWin));
+      if (lon < PER_LO || lon > PER_HI || sho < PER_LO || sho > PER_HI) {
+        offenders.push(
+          `${subject}: pick-longest ${(lon * 100).toFixed(0)}%, pick-shortest ${(sho * 100).toFixed(0)}% (each should be ${PER_LO * 100}-${PER_HI * 100}%)`,
+        );
+      }
+    }
+    expect(offenders, `Length-skewed subjects:\n${offenders.join('\n')}`).toEqual([]);
+  });
+
   it('no single question is a blatant length outlier', () => {
     // Loose guard so one question can't be wildly skewed even if the averages pass.
     const offenders = questions
