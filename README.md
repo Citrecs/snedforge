@@ -1,4 +1,4 @@
-# LearnCard
+# SnedForge
 
 A personal flashcard / quiz trainer. Organize material as **Subject Group → Subject → Questions**,
 take quizzes with either immediate or end-of-quiz grading, review every answer with explanations and

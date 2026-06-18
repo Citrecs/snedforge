@@ -50,23 +50,27 @@ export function SummaryPage() {
   return (
     <div className="space-y-6">
       <Card className="text-center">
-        <p className="text-sm font-medium uppercase tracking-wide text-slate-500">Quiz complete</p>
+        <p className="text-sm font-medium uppercase tracking-wide text-slate-500 dark:text-slate-400">Quiz complete</p>
         <p
           className={clsx(
             'mt-2 text-5xl font-bold',
-            pct >= 80 ? 'text-green-600' : pct >= 50 ? 'text-amber-500' : 'text-red-600',
+            pct >= 80
+              ? 'text-green-600 dark:text-green-400'
+              : pct >= 50
+                ? 'text-amber-500 dark:text-amber-400'
+                : 'text-red-600 dark:text-red-400',
           )}
         >
           {score} / {total}
         </p>
-        <p className="mt-1 text-slate-600">{pct}% correct</p>
+        <p className="mt-1 text-slate-600 dark:text-slate-300">{pct}% correct</p>
 
         {bySubject.size > 1 && (
           <div className="mx-auto mt-5 max-w-md space-y-1 text-left">
             {[...bySubject.values()].map((s) => (
               <div key={s.name} className="flex items-center justify-between text-sm">
-                <span className="text-slate-600">{s.name}</span>
-                <span className="font-medium text-slate-800">
+                <span className="text-slate-600 dark:text-slate-300">{s.name}</span>
+                <span className="font-medium text-slate-800 dark:text-slate-100">
                   {s.correct}/{s.total}
                 </span>
               </div>
@@ -86,7 +90,7 @@ export function SummaryPage() {
       </Card>
 
       <div>
-        <h2 className="mb-3 text-lg font-semibold text-slate-800">Review</h2>
+        <h2 className="mb-3 text-lg font-semibold text-slate-800 dark:text-slate-100">Review</h2>
         <div className="space-y-4">
           {session.questions.map((q, qi) => {
             const ans = session.answers[q.questionId];
@@ -95,17 +99,17 @@ export function SummaryPage() {
             return (
               <Card key={q.questionId}>
                 <div className="mb-2 flex items-center justify-between text-xs">
-                  <span className="text-slate-500">
+                  <span className="text-slate-500 dark:text-slate-400">
                     Q{qi + 1} · {subjectName}
                   </span>
                   <span
                     className={clsx(
                       'font-semibold',
                       verdict === 'correct'
-                        ? 'text-green-600'
+                        ? 'text-green-600 dark:text-green-400'
                         : verdict === 'incorrect'
-                          ? 'text-red-600'
-                          : 'text-slate-400',
+                          ? 'text-red-600 dark:text-red-400'
+                          : 'text-slate-400 dark:text-slate-500',
                     )}
                   >
                     {verdict === 'correct'
@@ -115,7 +119,7 @@ export function SummaryPage() {
                         : 'Skipped'}
                   </span>
                 </div>
-                <h3 className="font-semibold leading-snug text-slate-900">{q.prompt}</h3>
+                <h3 className="font-semibold leading-snug text-slate-900 dark:text-slate-100">{q.prompt}</h3>
                 <div className="mt-3 grid gap-2">
                   {q.options.map((o, i) => (
                     <AnswerOption

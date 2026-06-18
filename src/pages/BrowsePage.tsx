@@ -9,14 +9,14 @@ export function BrowsePage() {
   return (
     <div className="space-y-8">
       <header>
-        <h1 className="text-2xl font-bold tracking-tight text-slate-900">Browse content</h1>
-        <p className="mt-1 text-slate-600">All subject groups and their subjects.</p>
+        <h1 className="text-2xl font-bold tracking-tight text-slate-900 dark:text-slate-100">Browse content</h1>
+        <p className="mt-1 text-slate-600 dark:text-slate-300">All subject groups and their subjects.</p>
       </header>
 
       {groups.map((group) => (
         <section key={group.id} className="space-y-3">
           <div className="flex items-center justify-between">
-            <h2 className="text-lg font-semibold text-slate-800">{group.name}</h2>
+            <h2 className="text-lg font-semibold text-slate-800 dark:text-slate-100">{group.name}</h2>
             <Link to={`/setup?group=${group.id}`}>
               <Button variant="secondary">Quiz whole group</Button>
             </Link>
@@ -25,11 +25,11 @@ export function BrowsePage() {
           <div className="grid gap-3 sm:grid-cols-2">
             {group.subjects.map((subject) => (
               <Card key={subject.id} className="flex flex-col">
-                <h3 className="font-semibold text-slate-900">{subject.name}</h3>
+                <h3 className="font-semibold text-slate-900 dark:text-slate-100">{subject.name}</h3>
                 {subject.description && (
-                  <p className="mt-1 text-sm text-slate-600">{subject.description}</p>
+                  <p className="mt-1 text-sm text-slate-600 dark:text-slate-300">{subject.description}</p>
                 )}
-                <p className="mt-2 text-xs text-slate-500">{subject.questions.length} questions</p>
+                <p className="mt-2 text-xs text-slate-500 dark:text-slate-400">{subject.questions.length} questions</p>
                 <div className="mt-4 flex-1" />
                 <Link
                   to={`/setup?group=${group.id}&subject=${subject.id}`}

@@ -24,9 +24,9 @@ export function HistoryPage() {
   if (attempts.length === 0) {
     return (
       <div className="space-y-4">
-        <h1 className="text-2xl font-bold tracking-tight text-slate-900">History</h1>
+        <h1 className="text-2xl font-bold tracking-tight text-slate-900 dark:text-slate-100">History</h1>
         <Card className="text-center">
-          <p className="text-slate-600">No quizzes yet.</p>
+          <p className="text-slate-600 dark:text-slate-300">No quizzes yet.</p>
           <Link to="/setup" className="mt-4 inline-block">
             <Button>Take your first quiz</Button>
           </Link>
@@ -44,24 +44,24 @@ export function HistoryPage() {
   return (
     <div className="space-y-8">
       <div className="flex items-center justify-between">
-        <h1 className="text-2xl font-bold tracking-tight text-slate-900">History</h1>
-        <Button variant="ghost" onClick={onClear} className="text-red-600 hover:bg-red-50">
+        <h1 className="text-2xl font-bold tracking-tight text-slate-900 dark:text-slate-100">History</h1>
+        <Button variant="ghost" onClick={onClear} className="text-red-600 hover:bg-red-50 dark:text-red-400 dark:hover:bg-red-950/40">
           Clear history
         </Button>
       </div>
 
       <section className="grid gap-4 sm:grid-cols-3">
         <Card>
-          <p className="text-sm text-slate-500">Quizzes taken</p>
-          <p className="mt-1 text-2xl font-semibold text-slate-900">{stats.attempts}</p>
+          <p className="text-sm text-slate-500 dark:text-slate-400">Quizzes taken</p>
+          <p className="mt-1 text-2xl font-semibold text-slate-900 dark:text-slate-100">{stats.attempts}</p>
         </Card>
         <Card>
-          <p className="text-sm text-slate-500">Questions answered</p>
-          <p className="mt-1 text-2xl font-semibold text-slate-900">{stats.questionsAnswered}</p>
+          <p className="text-sm text-slate-500 dark:text-slate-400">Questions answered</p>
+          <p className="mt-1 text-2xl font-semibold text-slate-900 dark:text-slate-100">{stats.questionsAnswered}</p>
         </Card>
         <Card>
-          <p className="text-sm text-slate-500">Lifetime accuracy</p>
-          <p className="mt-1 text-2xl font-semibold text-slate-900">
+          <p className="text-sm text-slate-500 dark:text-slate-400">Lifetime accuracy</p>
+          <p className="mt-1 text-2xl font-semibold text-slate-900 dark:text-slate-100">
             {Math.round(stats.accuracy * 100)}%
           </p>
         </Card>
@@ -69,9 +69,9 @@ export function HistoryPage() {
 
       {weak.length > 0 && (
         <section>
-          <h2 className="mb-3 text-lg font-semibold text-slate-800">Weak areas</h2>
+          <h2 className="mb-3 text-lg font-semibold text-slate-800 dark:text-slate-100">Weak areas</h2>
           <Card>
-            <p className="mb-3 text-sm text-slate-500">
+            <p className="mb-3 text-sm text-slate-500 dark:text-slate-400">
               Subjects with the lowest accuracy (at least 4 questions answered). Good targets for
               your next quiz.
             </p>
@@ -81,10 +81,10 @@ export function HistoryPage() {
                 const pct = Math.round(s.accuracy * 100);
                 return (
                   <div key={`${s.groupId}::${s.subjectId}`} className="flex items-center gap-3">
-                    <span className="w-56 flex-none truncate text-sm text-slate-700">
+                    <span className="w-56 flex-none truncate text-sm text-slate-700 dark:text-slate-200">
                       {subjectName}
                     </span>
-                    <div className="h-2 flex-1 overflow-hidden rounded-full bg-slate-200">
+                    <div className="h-2 flex-1 overflow-hidden rounded-full bg-slate-200 dark:bg-slate-700">
                       <div
                         className={clsx(
                           'h-full rounded-full',
@@ -93,7 +93,7 @@ export function HistoryPage() {
                         style={{ width: `${pct}%` }}
                       />
                     </div>
-                    <span className="w-20 flex-none text-right text-sm text-slate-600">
+                    <span className="w-20 flex-none text-right text-sm text-slate-600 dark:text-slate-300">
                       {pct}% ({s.correct}/{s.total})
                     </span>
                   </div>
@@ -105,7 +105,7 @@ export function HistoryPage() {
       )}
 
       <section>
-        <h2 className="mb-3 text-lg font-semibold text-slate-800">Past attempts</h2>
+        <h2 className="mb-3 text-lg font-semibold text-slate-800 dark:text-slate-100">Past attempts</h2>
         <div className="space-y-2">
           {attempts.map((a) => {
             const group = getGroup(a.groupId);
@@ -116,11 +116,11 @@ export function HistoryPage() {
             return (
               <Card key={a.id} className="flex items-center justify-between gap-4 py-4">
                 <div className="min-w-0">
-                  <p className="truncate font-medium text-slate-800">
+                  <p className="truncate font-medium text-slate-800 dark:text-slate-100">
                     {group?.name ?? a.groupId}
                   </p>
-                  <p className="truncate text-xs text-slate-500">{subjectNames}</p>
-                  <p className="mt-1 text-xs text-slate-400">
+                  <p className="truncate text-xs text-slate-500 dark:text-slate-400">{subjectNames}</p>
+                  <p className="mt-1 text-xs text-slate-400 dark:text-slate-500">
                     {formatDate(a.finishedAt)} ·{' '}
                     {a.gradingMode === 'immediate' ? 'Immediate' : 'Deferred'}
                   </p>
@@ -129,12 +129,16 @@ export function HistoryPage() {
                   <p
                     className={clsx(
                       'text-lg font-semibold',
-                      pct >= 80 ? 'text-green-600' : pct >= 50 ? 'text-amber-500' : 'text-red-600',
+                      pct >= 80
+                        ? 'text-green-600 dark:text-green-400'
+                        : pct >= 50
+                          ? 'text-amber-500 dark:text-amber-400'
+                          : 'text-red-600 dark:text-red-400',
                     )}
                   >
                     {a.score}/{a.total}
                   </p>
-                  <p className="text-xs text-slate-500">{pct}%</p>
+                  <p className="text-xs text-slate-500 dark:text-slate-400">{pct}%</p>
                 </div>
               </Card>
             );

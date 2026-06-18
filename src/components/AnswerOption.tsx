@@ -20,12 +20,19 @@ export function AnswerOption({ label, text, selected, isCorrect, reveal, disable
       className={clsx(
         'flex w-full items-start gap-3 rounded-lg border p-3 text-left text-sm transition',
         // Selection highlight (no correctness shown yet)
-        !reveal && selected && 'border-brand-500 bg-brand-50 ring-1 ring-brand-500',
-        !reveal && !selected && 'border-slate-200 bg-white hover:border-slate-300 hover:bg-slate-50',
+        !reveal &&
+          selected &&
+          'border-brand-500 bg-brand-50 ring-1 ring-brand-500 dark:bg-brand-950/50',
+        !reveal &&
+          !selected &&
+          'border-slate-200 bg-white hover:border-slate-300 hover:bg-slate-50 dark:border-slate-700 dark:bg-slate-900 dark:hover:border-slate-600 dark:hover:bg-slate-800',
         // Correctness revealed
-        reveal && isCorrect && 'border-green-500 bg-green-50',
-        reveal && !isCorrect && selected && 'border-red-500 bg-red-50',
-        reveal && !isCorrect && !selected && 'border-slate-200 bg-white opacity-70',
+        reveal && isCorrect && 'border-green-500 bg-green-50 dark:bg-green-950/40',
+        reveal && !isCorrect && selected && 'border-red-500 bg-red-50 dark:bg-red-950/40',
+        reveal &&
+          !isCorrect &&
+          !selected &&
+          'border-slate-200 bg-white opacity-70 dark:border-slate-700 dark:bg-slate-900',
         disabled && !reveal && 'cursor-default',
       )}
     >
@@ -33,18 +40,23 @@ export function AnswerOption({ label, text, selected, isCorrect, reveal, disable
         className={clsx(
           'flex h-6 w-6 flex-none items-center justify-center rounded-full text-xs font-semibold',
           !reveal && selected && 'bg-brand-600 text-white',
-          !reveal && !selected && 'bg-slate-100 text-slate-600',
+          !reveal && !selected && 'bg-slate-100 text-slate-600 dark:bg-slate-800 dark:text-slate-300',
           reveal && isCorrect && 'bg-green-600 text-white',
           reveal && !isCorrect && selected && 'bg-red-600 text-white',
-          reveal && !isCorrect && !selected && 'bg-slate-100 text-slate-500',
+          reveal &&
+            !isCorrect &&
+            !selected &&
+            'bg-slate-100 text-slate-500 dark:bg-slate-800 dark:text-slate-400',
         )}
       >
         {label}
       </span>
       <span className="pt-0.5">{text}</span>
-      {reveal && isCorrect && <span className="ml-auto pt-0.5 font-semibold text-green-600">✓</span>}
+      {reveal && isCorrect && (
+        <span className="ml-auto pt-0.5 font-semibold text-green-600 dark:text-green-400">✓</span>
+      )}
       {reveal && !isCorrect && selected && (
-        <span className="ml-auto pt-0.5 font-semibold text-red-600">✗</span>
+        <span className="ml-auto pt-0.5 font-semibold text-red-600 dark:text-red-400">✗</span>
       )}
     </button>
   );

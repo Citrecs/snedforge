@@ -54,16 +54,16 @@ export function QuizRunnerPage() {
   return (
     <div className="space-y-5">
       <div className="flex items-center justify-between text-sm">
-        <span className="rounded-full bg-slate-100 px-3 py-1 text-xs font-medium text-slate-600">
+        <span className="rounded-full bg-slate-100 dark:bg-slate-800 px-3 py-1 text-xs font-medium text-slate-600 dark:text-slate-300">
           {subjectName}
         </span>
-        <button onClick={onExit} className="text-slate-400 hover:text-red-600">
+        <button onClick={onExit} className="text-slate-400 dark:text-slate-500 hover:text-red-600">
           Exit quiz
         </button>
       </div>
 
       <div>
-        <div className="mb-2 flex items-center justify-between text-xs text-slate-500">
+        <div className="mb-2 flex items-center justify-between text-xs text-slate-500 dark:text-slate-400">
           <span>
             Question {index + 1} of {total}
           </span>
@@ -76,7 +76,7 @@ export function QuizRunnerPage() {
       </div>
 
       <Card>
-        <h2 className="text-lg font-semibold leading-snug text-slate-900">{current.prompt}</h2>
+        <h2 className="text-lg font-semibold leading-snug text-slate-900 dark:text-slate-100">{current.prompt}</h2>
         <div className="mt-4 grid gap-2">
           {current.options.map((option, i) => (
             <AnswerOption

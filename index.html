@@ -4,7 +4,19 @@
     <meta charset="UTF-8" />
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>LearnCard — Flashcards & Quizzes</title>
+    <title>SnedForge — Flashcards & Quizzes</title>
+    <script>
+      // Apply the saved theme before first paint to avoid a flash. Defaults to dark.
+      (function () {
+        try {
+          if (localStorage.getItem('learncard.theme') !== 'light') {
+            document.documentElement.classList.add('dark');
+          }
+        } catch (e) {
+          document.documentElement.classList.add('dark');
+        }
+      })();
+    </script>
   </head>
   <body>
     <div id="root"></div>

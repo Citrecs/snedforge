@@ -9,8 +9,8 @@ const rawGroups: SubjectGroup[] = [googleCloudNetworking];
 // (which question / which field) instead of breaking the UI mysteriously.
 const result = groupsSchema.safeParse(rawGroups);
 if (!result.success) {
-  console.error('LearnCard content failed validation:', result.error.format());
-  throw new Error('LearnCard content failed validation — see console for details.');
+  console.error('SnedForge content failed validation:', result.error.format());
+  throw new Error('SnedForge content failed validation — see console for details.');
 }
 
 export const groups: SubjectGroup[] = rawGroups;
